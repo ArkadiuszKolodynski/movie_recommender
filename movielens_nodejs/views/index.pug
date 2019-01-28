@@ -1,0 +1,27 @@
+extends layout
+block content
+  .row
+    .col-md-3
+    .col-md-6
+      .my-5
+        each e, index in result
+          .my-3.bg-primary.p-3
+            center
+              img(src=e.imdbPictureURL height=200 alt=e.title).mb-2
+              br
+              strong= ((index + 1) + (multiplier - 1) * 100) + '. ' + e.title
+              span= ' (' + e.year + ')'
+              br
+              | Rating: 
+              span= e.rtAudienceRating * 2
+    .col-md-3
+  .p-2.fixed-bottom
+    - var n = 1;
+      ul.pagination.justify-content-center
+        while n <= num_pages
+          if n == current_page
+            li.page-item.active
+              a.page-link(href="/page/" + n)= n++
+          else
+            li.page-item
+              a.page-link(href="/page/" + n)= n++

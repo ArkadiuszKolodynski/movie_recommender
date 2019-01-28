@@ -1,0 +1,22 @@
+extends layout
+block content
+  .row
+    .col-md-1
+    .col-md-10
+      .my-5.card.border-light
+        .card-header.text-center
+          select(name="users")#select_user.custom-select.w-50
+            option(value=0, selected="true") Select user id
+            each user in users
+              option(value=user.user_id)= user.user_id
+        .card-body
+          ul.nav.nav-pills
+            li.nav-item
+              a.nav-link.active(data-toggle="tab" href="#content") User's ratings
+            li.nav-item
+              a.nav-link(data-toggle="tab" href="#recommendations") Recommendations
+          .tab-content
+            #content.pt-2.card-columns.tab-pane.active
+            #recommendations.pt-2.tab-pane.container.w-50.fade
+    .col-md-1
+  script(src="/js/get_user_ratings.js")
