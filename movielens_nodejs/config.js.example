@@ -1,0 +1,14 @@
+const config = {};
+
+config.db = {};
+
+config.db.host = "XXX";
+config.db.user = "XXX";
+config.db.password = "XXX";
+config.db.name = "XXX";
+
+config.modelApiUrl = "http://localhost:8501/v1/models/exported_model:predict";
+config.csvFilePath =
+  "/Model Builder/hetrec2011-movielens-2k-v2/user_ratedmovies-timestamps.dat";
+
+module.exports = config;
