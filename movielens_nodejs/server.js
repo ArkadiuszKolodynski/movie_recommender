@@ -233,10 +233,10 @@ app.post("/rebuild-model", (req, res) => {
   var ssh = new node_ssh();
   ssh
     .connect({
-      host: "localhost",
-      port: "65432",
-      username: "admin",
-      password: "Cvbn4569"
+      host: "xxx",
+      port: "xxx",
+      username: "xxx",
+      password: "xxx"
     })
     .then(() => {
       ssh.exec("docker-compose run model_builder", {
