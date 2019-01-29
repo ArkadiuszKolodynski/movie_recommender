@@ -1,0 +1,19 @@
+version: "3"
+services:
+  node:
+    build: ./movielens_nodejs
+    network_mode: "host"
+
+  model_builder:
+    build: ./Model_Builder
+    network_mode: "host"
+    volumes:
+      - ./exported_model:/code/exported_model
+
+  model_server:
+    image: tensorflow/serving
+    environment:
+      - MODEL_NAME=exported_model
+    network_mode: "host"
+    volumes:
+      - ./exported_model:/models/exported_model
