@@ -3,6 +3,8 @@ services:
   node:
     build: ./movielens_nodejs
     network_mode: "host"
+    volumes:
+      - ../Model_Builder/hetrec2011-movielens-2k-v2:/data
 
   model_builder:
     build: ./Model_Builder
