@@ -5,6 +5,7 @@ var mysql = require("mysql");
 var axios = require("axios");
 var csvWriter = require("csv-write-stream");
 var fs = require("fs");
+var node_ssh = require("node-ssh");
 var config = require("./config");
 
 var con = mysql.createConnection({
@@ -226,6 +227,23 @@ app.post("/add-rates", (req, res) => {
   writer.end();
 
   res.json({ msg: "success!" });
+});
+
+app.post("/rebuild-model", (req, res) => {
+  var ssh = new node_ssh();
+  ssh
+    .connect({
+      host: "localhost",
+      port: "65432",
+      username: "admin",
+      password: "Cvbn4569"
+    })
+    .then(() => {
+      ssh.exec("docker-compose run model_builder", {
+        cwd: "/home/admin/movie_recommender"
+      });
+    });
+  res.json({ msg: "success" });
 });
 
 var server = app.listen(8080, () => {

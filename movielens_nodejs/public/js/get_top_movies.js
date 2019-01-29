@@ -68,12 +68,15 @@ confirmRate = (img, title, year, movies, currentId) => {
     })
       .then(res => res.json())
       .then(response => {
-        console.log("Success:", JSON.stringify(response));
-        setTimeout(() => {
-          window.location.replace(
-            window.location.origin + "/user-recommendation/" + currentId
-          );
-        }, 3000);
+        fetch("/rebuild-model", { method: "POST" })
+          .then(res => res.json())
+          .then(response => {
+            setTimeout(() => {
+              window.location.replace(
+                window.location.origin + "/user-recommendation/" + currentId
+              );
+            }, 3000);
+          });
       })
       .catch(error => console.error("Error:", error));
   }
